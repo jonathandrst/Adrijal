@@ -1,0 +1,41 @@
+<%= form_for(@vacancy) do |f| %>
+  <% if @vacancy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vacancy.errors.count, "error") %> prohibited this vacancy from being saved:</h2>
+
+      <ul>
+      <% @vacancy.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ocupación %><br>
+    <%= collection_select(:vacancy, :occupation_id, Occupation.all, :id, :name, {}, {:multiple => false}) %>
+  </div>
+  <div class="field">
+    <%= f.label :proyecto%><br>
+    <%= collection_select(:vacancy, :project_id, Project.where("projects.user_id = ? AND projects.availability_status = ?", current_user.id, 1), :id, :name, {}, {:multiple => false}) %>
+  </div>
+  <div class="field">
+    <%= f.label :descripción %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :salario_por_hora %><br>
+    <%= f.text_field :hourly_wage %>
+  </div>
+  <div class="field">
+    <%= f.label :horas_requeridas %><br>
+    <%= f.text_field :hours_required %>
+  </div>
+  <div class="field">
+    <%= f.label :estatus %><br>
+    <%= f.select :availability_status, [['Activo','1'],['Inactivo','0']] %>
+  </div>
+  <div class="actions">
+   <%= f.submit "Guardar", class: "btn btn-info"  %>
+  </div>
+<% end %>

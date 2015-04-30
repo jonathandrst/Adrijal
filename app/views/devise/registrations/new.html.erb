@@ -1,0 +1,59 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ocupación %><br />
+    <%= collection_select(:user, :occupation_id, Occupation.all, :id, :name, {}, {:multiple => false}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :fullname, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rfc %><br />
+    <%= f.text_field :rfc, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :teléfono_celular %><br />
+    <%= f.text_field :mobile_phone_number, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :teléfono_de_casa %><br />
+    <%= f.text_field :home_phone_number, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :linkedin_url %><br />
+    <%= f.text_field :linkedin_url, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contraseña %>
+    <% if @validatable %>
+    <em>(mínimo <%= @minimum_password_length %> caracteres)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :confrimar_contraseña %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up", class: "btn btn-success" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

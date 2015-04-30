@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= User.find_by_id(@project.user_id).fullname  %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @project.description %>
+</p>
+
+<p>
+  <strong>Dirección:</strong>
+  <%= @project.address %>
+</p>
+
+<p>
+  <strong>Estatus:</strong>
+    <% if @project.availability_status == 1%>
+            <% result = "Disponible" %>
+          <% else %>
+            <% result = "No Disponible"%>
+          <% end %>
+          <%= result %>
+</p>
+
+<%= link_to 'Editar', edit_project_path(@project), class: "btn btn-warning btn-xs" %> |
+<%= link_to 'Atrás', projects_path, class: "btn btn-danger btn-xs" %>

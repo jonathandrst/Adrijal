@@ -1,0 +1,21 @@
+<div>
+  <h2 class="text-center">Registro de Usuarios</h2>
+  <%= line_chart User.group_by_day(:created_at).count  %>
+</div>
+
+<div>
+  <h2 class="text-center">Creación de vacantes</h2>
+  <%= line_chart Vacancy.group_by_day(:created_at).count  %>
+</div>
+
+<div>
+  <h2 class="text-center">Creación de proyectos</h2>
+  <%= line_chart Project.group_by_day(:created_at).count  %>
+</div>
+
+<div>
+  <h2 class="text-center">Aplicaciones Diaras</h2>
+  <%= line_chart UserVacancy.group_by_day(:created_at).count  %>
+</div>
+<br><br>
+<%= link_to 'Generar PDF', analytics_path(:format => 'pdf'), class: "btn btn-small btn-success", :target => "_blank" %>

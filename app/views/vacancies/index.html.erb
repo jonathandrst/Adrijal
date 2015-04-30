@@ -1,0 +1,47 @@
+<%= image_tag('logo.jpg')%>
+<p id="notice"><%= notice %></p>
+
+<h1>Mis Vacantes</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>N&uacute;mero de vacante</th>
+      <th>Ocupaci&oacute;n</th>
+      <th>Proyecto</th>
+      <th>Descripci&oacute;n</th>
+      <th>Salario por Hora</th>
+      <th>Horas Requeridas</th>
+      <th>Disponibilidad</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vacancies.each do |vacancy| %>
+      <tr>
+        <td><%= vacancy.id %></td>
+        <td><%= Occupation.find_by_id(vacancy.occupation_id).name %></td>
+        <td><%= Project.find_by_id(vacancy.project_id).name %></td>
+        <td><%= vacancy.description %></td>
+        <td><%= vacancy.hourly_wage %></td>
+        <td><%= vacancy.hours_required %></td>
+        <td>
+          <% if vacancy.availability_status == 1%>
+            <% result = "Disponible" %>
+          <% else %>
+            <% result = "No Disponible"%>
+          <% end %>
+          <%= result %>
+        </td>
+        <td><%= link_to 'Detalle', vacancy, class: "btn btn-success" %></td>
+        <td><%= link_to 'Editar', edit_vacancy_path(vacancy), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Eliminar', vacancy, method: :delete, data: { confirm: '¿Eliminar la vacante?' }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva Vacante', new_vacancy_path, class: "btn btn-small btn-success" %>

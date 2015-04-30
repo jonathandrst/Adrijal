@@ -1,0 +1,23 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: projectwork_development
+  username: projectwork
+  password: 123456
+
+
+test:
+  <<: *default
+  database: projectwork_test
+
+
+production:
+  <<: *default
+  database: projectwork_production
+  username: projectwork
+  password: <%= ENV['PROJECTWORK_DATABASE_PASSWORD'] %>

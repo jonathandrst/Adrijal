@@ -1,0 +1,66 @@
+<%= image_tag('logo.jpg')%>
+<p id="notice"><%= notice %></p>
+
+<h1>Mis Aplicaciones</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>N&uacute;mero de vacante</th>
+      <th>Nombre del empleador</th>
+      <th>Estado de aceptaci&oacute;n</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_vacancies.each do |user_vacancy| %>
+      <tr>
+        <td><%= user_vacancy.vacancy_id %></td>
+        <td><%= User.select("users.fullname").where("vacancies.id = ?", user_vacancy.vacancy_id).joins('INNER JOIN projects ON users.id = projects.user_id INNER JOIN vacancies ON vacancies.project_id = projects.id INNER JOIN user_vacancies ON user_vacancies.vacancy_id = vacancies.id').pluck(:fullname)[0] %></td>
+        <td>
+          <% if user_vacancy.acceptance_status == 1%>
+            <% result = "Aceptado" %>
+          <% else %>
+            <% result = "No Aceptado"%>
+          <% end %>
+          <%= result %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h1>Aplicaciones a tus vacantes</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>N&uacute;mero de vacante</th>
+      <th>Nombre del aplicante</th>
+      <th>Estado de aceptaci&oacute;n</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @applicants.each do |applicant| %>
+      <tr>
+        <td><%= applicant.vacancy_id %></td>
+        <td><%= User.find_by_id(applicant.user_id).fullname %></td>
+        <td>
+          <% if applicant.acceptance_status == 1%>
+            <% result = "Aceptado" %>
+          <% else %>
+            <% result = "No Aceptado"%>
+          <% end %>
+          <%= result %>
+        </td>
+        <td><%= link_to 'Detalle', applicant, class: "btn btn-success" %></td>
+        <td><%= link_to 'Quitar Aplicación', applicant, method: :delete, data: { confirm: '¿Está seguro de querer remover la aplicación?' }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

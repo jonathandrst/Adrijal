@@ -1,0 +1,37 @@
+<p>
+  <strong>Nombre Completo:</strong>
+   <%= @user.fullname %>
+</p>
+
+<p>
+  <strong>Correo Electronico:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Ocupación:</strong>
+  <%= Occupation.find_by_id(@user.occupation_id).name %>
+</p>
+
+<p>
+  <strong>Perfil de Linked In:</strong>
+ 
+  <%= link_to nil, @user.linkedin_url, :target => "_blank", class: "btn btn-info" %>
+
+</p>
+
+<p>
+  <strong>RFC:</strong>
+  <%= @user.rfc %>
+</p>
+
+<p>
+  <strong>Teléfono Celular:</strong>
+  <%= @user.mobile_phone_number %>
+</p>
+
+<p>
+  <strong>Teléfono de casa:</strong>
+  <%= @user.home_phone_number %>
+</p>
+<%= link_to 'Atrás', user_vacancies_path, class: "btn btn-small btn-danger btn-xs" %>

@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ocupación:</strong>
+  <%= Occupation.find_by_id(@vacancy.occupation_id).name %>
+</p>
+
+<p>
+  <strong>Proyecto:</strong>
+  <%= Project.find_by_id(@vacancy.project_id).name %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @vacancy.description %>
+</p>
+
+<p>
+  <strong>Salario por Hora:</strong>
+  <%= @vacancy.hourly_wage %>
+</p>
+
+<p>
+  <strong>Horas Requeridas:</strong>
+  <%= @vacancy.hours_required %>
+</p>
+
+<p>
+  <strong>Estatus:</strong>
+      <% if @vacancy.availability_status == 1%>
+            <% result = "Disponible" %>
+          <% else %>
+            <% result = "No Disponible"%>
+          <% end %>
+          <%= result %>
+</p>
+
+
+<%= button_to "Aplicar", { :controller => "vacancies", :action => "apply"}, class: "btn btn-info" %>
+<br>
+<%= link_to 'Editar', edit_vacancy_path(@vacancy),  class: "btn btn-warning btn-xs"%> |
+<%= link_to 'Atrás', vacancies_path, class: "btn btn-danger btn-xs" %>

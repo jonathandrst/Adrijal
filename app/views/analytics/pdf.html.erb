@@ -1,0 +1,25 @@
+
+<%= javascript_include_tag "https://www.google.com/jsapi" %>
+<%= wicked_pdf_javascript_include_tag "chartkick" %>
+
+<div class="text-center">
+<div>
+  <h2 class="text-center">Registro de Usuarios</h2>
+  <%= line_chart User.group_by_day(:created_at).count  %>
+</div>
+
+<div>
+  <h2 class="text-center">Creaci&oacute;n de vacantes</h2>
+  <%= line_chart Vacancy.group_by_day(:created_at).count  %>
+</div>
+
+<div>
+  <h2 class="text-center">Creaci&oacute;n de proyectos</h2>
+  <%= line_chart Project.group_by_day(:created_at).count  %>
+</div>
+
+<div>
+  <h2 class="text-center">Aplicaciones Diaras</h2>
+  <%= line_chart UserVacancy.group_by_day(:created_at).count  %>
+</div>
+</div>

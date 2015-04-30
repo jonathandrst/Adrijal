@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @occupation.name %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @occupation.description %>
+</p>
+
+<%= link_to 'Editar', edit_occupation_path(@occupation), class: "btn btn-small btn-warning btn-xs" %> |
+<%= link_to 'Atrás', occupations_path, class: "btn btn-small btn-danger btn-xs" %>

@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Ver Perfil del aplicante', user_path(@user_vacancy.user_id), class: "btn btn-info" %>
+<br><br>
+<p>
+  <strong>Estatus de Aceptación:</strong>
+  <%= @user_vacancy.acceptance_status %>
+</p>
+
+<% if @user_vacancy.acceptance_status == 0 %>
+<%= button_to "Aprovar", { :controller => "user_vacancies", :action => "approve"}, class: "btn btn-success" %>
+<% end %>
+<% if @user_vacancy.acceptance_status == 1 %>
+<%= button_to "Desaprovar", { :controller => "user_vacancies", :action => "disapprove"}, class: "btn btn-danger" %>
+<% end %>
+<br>
+<%= link_to 'Atrás', user_vacancies_path, class: "btn btn-small btn-danger btn-xs" %>

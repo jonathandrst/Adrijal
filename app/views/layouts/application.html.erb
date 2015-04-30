@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adrijal Systems</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if current_user %>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Adrijal Systems
+                    </a>
+                </li>
+                <li>
+                    <%= link_to projects_path do %>
+                        <i class="glyphicon glyphicon-folder-open"><strong> Proyectos</strong></i>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to vacancies_path do %>
+                        <i class="glyphicon glyphicon-user"><strong> Crear Vacantes</strong></i>
+                    <% end %>                
+                </li>
+                <li>
+                    <%= link_to jobs_path do %>
+                        <i class="glyphicon glyphicon-thumbs-up"><strong> Buscar Vacantes</strong></i>
+                    <% end %>                       
+                </li>
+                <li>
+                    <%= link_to user_vacancies_path do %>
+                        <i class="glyphicon glyphicon-ok"><strong> Aprobaciones</strong></i>
+                    <% end %> 
+
+                </li>
+                <% if current_user.role_identity == 1 %>
+                <li>
+                    <%= link_to occupations_path do %>
+                        <i class="glyphicon glyphicon-lock"><strong> Ocupaciones</strong></i>
+                    <% end %>                     
+                </li>
+                
+                <li>
+                    <%= link_to analytics_path do %>
+                        <i class="glyphicon glyphicon-stats"><strong> Estadísticas</strong></i>
+                    <% end %>                  
+                </li>
+                <% end %>
+                <li>
+                     <%= link_to edit_user_registration_path do %>
+                        <i class="glyphicon glyphicon-cog"><strong> Editar Cuenta</strong></i>
+                    <% end %>                   
+                </li>
+                <li>
+                    <%= link_to destroy_user_session_path, :method => :delete do %>
+                        <i class="glyphicon glyphicon-off"><strong> Cerrar Sesión</strong></i>
+                    <% end %>    
+                </li>
+            </ul>
+        </div>
+<%end%>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <%= yield %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

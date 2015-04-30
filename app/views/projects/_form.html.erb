@@ -1,0 +1,35 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :descripción %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :dirección %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :estatus%><br>
+    <%= f.select :availability_status,[['Activo','1'],['Inactivo','0']] %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Guardar", class: "btn btn-info"  %>
+  </div>
+<% end %>
